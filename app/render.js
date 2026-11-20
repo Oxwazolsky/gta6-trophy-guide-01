@@ -112,5 +112,5 @@ export function renderProgressSummary(trophies, earnedNames) {
   }
   const missables = trophies.filter((t) => t.missable);
   const missDone = missables.filter((t) => earnedNames.has(t.name)).length;
-  document.getElementById('missable-count').textContent = `⚠ Missable: ${missDone}/${missables.length} secured — ${missables.map((t) => t.name).join(' · ')}`;
+  document.getElementById('missable-count').textContent = `⚠ Missable ${missDone}/${missables.length}: ${missables.map((t) => t.name).join(' · ')}`;
 }
