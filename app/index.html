@@ -3,23 +3,59 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GTA VI trophy checklist</title>
+<title>Leonida Legend — GTA VI Trophy Guide &amp; Tracker (55 PS5 Trophies)</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-  <h1>GTA VI trophy checklist</h1>
-  <p id="progress">0 of 55 earned</p>
+<header id="top" class="hero">
+  <svg class="palms" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true"><path d="M60 120 C70 70 62 45 40 30 C65 38 78 30 92 12 C88 34 96 44 112 52 C88 52 76 62 70 78 C84 70 98 72 110 82 C92 82 78 92 72 120 Z M150 120 C156 84 150 62 134 48 C156 54 168 46 180 32 C178 50 184 60 198 66 C176 68 164 76 160 90 C172 82 186 84 196 92 C178 94 166 102 162 120 Z M1050 120 C1044 78 1052 52 1074 34 C1050 42 1036 34 1024 16 C1026 38 1018 50 1002 58 C1026 58 1038 68 1044 84 C1030 74 1016 76 1004 86 C1022 86 1036 98 1042 120 Z" fill="#0b0520"/></svg>
+  <div class="hero-main">
+    <p class="kicker">GRAND THEFT AUTO VI · PLAYSTATION 5 · OFFLINE GUIDE</p>
+    <h1>Leonida Legend <span>GTA VI Trophy Guide &amp; Tracker</span></h1>
+    <p class="sub">All <strong>55 trophies</strong> — 1 Platinum · 2 Gold · 6 Silver · 46 Bronze — each with its official name, description and grade, an original guide citing its sources, a roadmap to the Platinum, and <strong>missable trophies flagged</strong>.</p>
+    <p class="sources-line">List sources: <a href="https://www.exophase.com/game/grand-theft-auto-vi-ps5/trophies/">Exophase — Grand Theft Auto VI trophies</a> · <a href="https://psnprofiles.com/trophies/grand-theft-auto-vi">PSNProfiles — Grand Theft Auto VI trophies</a>. Guides are written from the official descriptions only.</p>
+  </div>
+  <aside class="progress-panel" aria-label="Overall progress">
+    <p id="progress-text" class="progress-text">0 of 55 earned · 0%</p>
+    <div class="bar"><div id="progress-bar" class="bar-fill"></div></div>
+    <ul id="grade-counts" class="grade-counts"></ul>
+    <p id="missable-count" class="missable-count"></p>
+  </aside>
 </header>
-<div class="controls">
-  <label>Grade <select id="grade"><option value="all">All</option><option value="platinum">Platinum</option><option value="gold">Gold</option><option value="silver">Silver</option><option value="bronze">Bronze</option></select></label>
-  <button id="export" type="button">Export progress</button>
-  <label class="import">Import progress <input id="import" type="file" accept="application/json"></label>
+
+<section id="roadmap" class="roadmap" aria-label="Roadmap to the Platinum">
+  <div class="roadmap-head"><h2>Roadmap to the Platinum</h2><p>Play in this order — story first, mop-up last. Click a stage to filter the checklist.</p></div>
+  <div id="roadmap-stages" class="roadmap-stages"></div>
+</section>
+
+<div id="toolbar" class="toolbar">
+  <input id="search" type="search" placeholder="Search trophies, descriptions, guides…" aria-label="Search trophies">
+  <div class="chips" role="group" aria-label="Filter by kind">
+    <button type="button" class="chip active" data-kind="all">All kinds</button>
+    <button type="button" class="chip" data-kind="story">Story</button>
+    <button type="button" class="chip" data-kind="side">Side strands</button>
+    <button type="button" class="chip" data-kind="collectibles">Collectibles</button>
+    <button type="button" class="chip" data-kind="activities">Activities</button>
+    <button type="button" class="chip" data-kind="freeroam">Free roam</button>
+    <button type="button" class="chip chip-missable" data-kind="missable">⚠ Missable only</button>
+  </div>
+  <label>Grade <select id="grade-filter"><option value="all">All grades</option><option value="platinum">Platinum</option><option value="gold">Gold</option><option value="silver">Silver</option><option value="bronze">Bronze</option></select></label>
+  <label>State <select id="state-filter"><option value="all">All</option><option value="earned">Earned</option><option value="unearned">Not yet earned</option></select></label>
+  <label class="spoiler-toggle"><input id="spoiler-toggle" type="checkbox"> Spoiler protection: hide story trophies until earned</label>
+  <button id="export-btn" type="button">Export progress</button>
+  <label class="import-btn">Import progress <input id="import-file" type="file" accept="application/json,.json"></label>
+  <button id="reset-btn" type="button">Reset</button>
 </div>
-<table>
-  <thead><tr><th>Earned</th><th>Trophy</th><th>Grade</th><th>How to get it</th></tr></thead>
-  <tbody id="rows"></tbody>
-</table>
+
+<main>
+  <p id="result-count" class="result-count"></p>
+  <div id="trophy-list" class="trophy-list"></div>
+  <p id="empty-msg" class="empty" hidden>No trophies match these filters. Clear the search or pick another filter.</p>
+</main>
+
+<footer class="foot">
+  <p>Progress is saved in this browser (localStorage) and can be exported / imported as JSON. This is an unofficial fan guide with an original Vice-City-inspired look — no Rockstar artwork or logo. Trophy names and descriptions are shown as PlayStation publishes them; list data via the Exophase and PSNProfiles listings linked above.</p>
+</footer>
 <script type="module" src="app.js"></script>
 </body>
 </html>

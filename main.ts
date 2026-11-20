@@ -10,6 +10,8 @@
 // or JPEG screenshots of it in screenshots/ (the first by name is the cover; shots.json says which views this
 // starter's were taken of), and run it.
 //
+// Leonida Legend edition, built for this entry by aditya-putra: full 55-trophy guides with cited sources,
+// a six-stage roadmap, missable flags, spoiler protection and export/import tracking in app/.
 // Serve it locally with `node serve.ts`, then open http://localhost:8080.
 // Outside the grader's container, MAKEFUN_OUTPUT_DIR stands in for /output:
 //   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
@@ -30,6 +32,7 @@ if (existsSync(join(here, 'screenshots'))) cpSync(join(here, 'screenshots'), joi
 // The scorer's own caps (reference/gate.json): only text_max_bytes shapes the bytes; the others refuse an entry the
 // scorer would refuse (more than 4 screenshots or one over 256 KiB; more than 993 files and directories in app/ or
 // 48 MiB of app files: app/ counts beside /output's own 1000-entry cap, its screenshots/ and dossier.json).
+console.log('Leonida Legend: copying the GTA VI trophy guide (55 trophies) and its screenshots to the output.');
 writeFileSync(
   join(out, 'dossier.json'),
   buildDossier(out, { text_max_bytes: 163840, screenshots: { max: 4, max_bytes: 262144 }, app_max_files: 993, app_max_bytes: 50331648 }),
