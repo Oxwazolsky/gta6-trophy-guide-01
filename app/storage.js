@@ -1,4 +1,4 @@
-// storage.js — persistence for Leonida Legend.
+// storage.js — persistence for Leonida Legend, written in this session.
 // Earned trophies and the spoiler setting live in localStorage; progress can
 // also leave the browser as a JSON file and come back in through import.
 

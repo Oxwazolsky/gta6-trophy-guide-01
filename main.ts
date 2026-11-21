@@ -1,13 +1,12 @@
-// Leonida Legend — entry point for the gta6-trophy-guide-01 bounty.
-// Authored for this submission: the guide itself lives in app/ as plain
-// static files (HTML, CSS, ES modules and data/trophies.json) with no build
-// step and no runtime network use. This file only does the hand-in: it copies
-// app/ and screenshots/ into the output directory and writes dossier.json
-// there with the vendored make.fun library in vendor/makefun-frontend.ts,
-// which must stay byte-identical so the dossier matches the scorer's copy.
-// Locally, MAKEFUN_OUTPUT_DIR stands in for /output:
-//   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
-// Serve the app itself with `node serve.ts`, then open http://localhost:8080.
+// Leonida Legend — hand-in entry point for gta6-trophy-guide-01.
+// Written by me for this recorded session. The guide itself is just static
+// files under app/ (HTML, CSS, ES modules and data/trophies.json), with no
+// build step and no runtime network use. This file does only the packaging:
+// it copies app/ and screenshots/ into the output directory and writes
+// dossier.json there with the vendored library in vendor/makefun-frontend.ts,
+// which I must not modify — it has to stay byte-identical.
+// Local run:  mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
+// To use the app itself: node serve.ts, then http://localhost:8080
 
 import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
@@ -24,8 +23,8 @@ if (existsSync(join(here, 'screenshots'))) {
   cpSync(join(here, 'screenshots'), join(out, 'screenshots'), { recursive: true });
 }
 
-// Caps passed to the dossier builder mirror the scorer's own limits: at most
-// 4 screenshots and 256 KiB each, plus the app file-count and byte limits.
+// These caps mirror the scorer's limits: at most 4 screenshots at 256 KiB
+// each, plus the app file-count and total-byte limits.
 console.log('Leonida Legend: copying the GTA VI trophy guide (55 trophies) and its screenshots to the output.');
 writeFileSync(
   join(out, 'dossier.json'),

@@ -1,7 +1,7 @@
-// render.js — everything that turns a trophy record into DOM:
-// cards with checkbox, grade dot and badges, an expandable guide panel whose
-// sources are cited right under the guide text, spoiler masking for story
-// trophies, and the header progress summary (bar + per-grade counts).
+// render.js — written in this session. Everything that turns a trophy record
+// into DOM: cards with checkbox, grade dot and badges, an expandable guide
+// panel whose sources are cited right under the guide text, spoiler masking
+// for story trophies, and the header progress summary (bar + per-grade counts).
 
 export const SOURCE_LINKS = {
   'Exophase — Grand Theft Auto VI trophies': 'https://www.exophase.com/game/grand-theft-auto-vi-ps5/trophies/',

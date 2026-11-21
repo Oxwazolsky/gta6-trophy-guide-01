@@ -1,7 +1,7 @@
-// app.js — Leonida Legend, the tracker controller.
+// app.js — Leonida Legend tracker controller, written in this session.
 // I load the 55 trophies, keep the current filter / search / spoiler state in
 // one place, and re-render the checklist, roadmap and progress header whenever
-// anything changes. Earned state is delegated to storage.js.
+// anything changes. Earned state itself is delegated to storage.js.
 
 import {
   loadEarnedNames,

@@ -1,4 +1,4 @@
-// roadmap.js — the six-stage Roadmap to the Platinum.
+// roadmap.js — the six-stage Roadmap to the Platinum, written in this session.
 // The stages are my ordering of the official list: story first, then strands,
 // collectibles, activities, money / partner play, and finally the 100% audit.
 // Clicking a stage card filters the checklist to that stage.
