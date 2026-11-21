@@ -1,13 +1,24 @@
-// render.js — trophy cards, grade badges, missable flags, guides with their sources cited beside them.
+// render.js — everything that turns a trophy record into DOM:
+// cards with checkbox, grade dot and badges, an expandable guide panel whose
+// sources are cited right under the guide text, spoiler masking for story
+// trophies, and the header progress summary (bar + per-grade counts).
+
 export const SOURCE_LINKS = {
   'Exophase — Grand Theft Auto VI trophies': 'https://www.exophase.com/game/grand-theft-auto-vi-ps5/trophies/',
   'PSNProfiles — Grand Theft Auto VI trophies': 'https://psnprofiles.com/trophies/grand-theft-auto-vi',
 };
-export const KIND_LABELS = { story: 'Story', side: 'Side strand', collectibles: 'Collectibles', activities: 'Activities', freeroam: 'Free roam' };
+
+export const KIND_LABELS = {
+  story: 'Story',
+  side: 'Side strand',
+  collectibles: 'Collectibles',
+  activities: 'Activities',
+  freeroam: 'Free roam',
+};
 
 function makeBadge(text, extraClass) {
   const badge = document.createElement('span');
-  badge.className = 'badge' + (extraClass ? ' ' + extraClass : '');
+  badge.className = extraClass ? `badge ${extraClass}` : 'badge';
   badge.textContent = text;
   return badge;
 }
@@ -16,11 +27,11 @@ function buildSourcesBlock(trophy) {
   const box = document.createElement('div');
   box.className = 'sources';
   box.append(document.createTextNode('Sources: '));
-  trophy.sources.forEach((name, index) => {
-    if (index) box.append(document.createTextNode(' · '));
+  trophy.sources.forEach((sourceName, index) => {
+    if (index > 0) box.append(document.createTextNode(' · '));
     const link = document.createElement('a');
-    link.href = SOURCE_LINKS[name] ?? '#';
-    link.textContent = name;
+    link.href = SOURCE_LINKS[sourceName] ?? '#';
+    link.textContent = sourceName;
     link.target = '_blank';
     link.rel = 'noopener';
     box.append(link);
@@ -32,18 +43,22 @@ function buildSourcesBlock(trophy) {
 function buildGuidePanel(trophy) {
   const panel = document.createElement('div');
   panel.className = 'guide-panel';
+
   const label = document.createElement('p');
   label.className = 'guide-label';
   label.textContent = 'GUIDE — IN OUR OWN WORDS';
+
   const text = document.createElement('p');
   text.textContent = trophy.guide;
   panel.append(label, text);
+
   if (trophy.missable) {
     const note = document.createElement('p');
     note.className = 'missable-note';
     note.textContent = '⚠ MISSABLE — flagged from its official description. Do it when the opportunity appears and keep a backup save.';
     panel.append(note);
   }
+
   panel.append(buildSourcesBlock(trophy));
   return panel;
 }
@@ -51,25 +66,35 @@ function buildGuidePanel(trophy) {
 export function createTrophyCard(trophy, view) {
   const { isEarned, spoilerOn, isOpen, onToggleEarned, onToggleGuide } = view;
   const hiddenBySpoiler = spoilerOn && trophy.kind === 'story' && !isEarned;
+
   const card = document.createElement('article');
-  card.className = 'trophy' + (isEarned ? ' earned' : '');
+  card.className = isEarned ? 'trophy earned' : 'trophy';
   card.id = `trophy-${trophy.id}`;
-  const top = document.createElement('div');
-  top.className = 'trophy-top';
-  const box = document.createElement('input');
-  box.type = 'checkbox';
-  box.checked = isEarned;
-  box.setAttribute('aria-label', `Mark ${trophy.name} as earned`);
-  box.addEventListener('change', () => onToggleEarned(trophy, box.checked));
+
+  const topRow = document.createElement('div');
+  topRow.className = 'trophy-top';
+
+  const checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+  checkbox.checked = isEarned;
+  checkbox.setAttribute('aria-label', `Mark ${trophy.name} as earned`);
+  checkbox.addEventListener('change', () => onToggleEarned(trophy, checkbox.checked));
+
   const dot = document.createElement('span');
   dot.className = `grade-dot grade-${trophy.grade}`;
+
   const body = document.createElement('div');
+
   const heading = document.createElement('h3');
   heading.textContent = hiddenBySpoiler ? '??? — hidden story trophy' : trophy.name;
-  const desc = document.createElement('p');
-  desc.className = 'desc';
-  desc.textContent = hiddenBySpoiler ? 'Spoiler protection is on: this story trophy\u2019s name and description stay hidden until you earn it.' : trophy.description;
-  if (hiddenBySpoiler) desc.classList.add('spoiler-mask');
+
+  const description = document.createElement('p');
+  description.className = 'desc';
+  description.textContent = hiddenBySpoiler
+    ? 'Spoiler protection is on: this story trophy’s name and description stay hidden until you earn it.'
+    : trophy.description;
+  if (hiddenBySpoiler) description.classList.add('spoiler-mask');
+
   const badges = document.createElement('div');
   badges.className = 'badges';
   badges.append(
@@ -78,39 +103,46 @@ export function createTrophyCard(trophy, view) {
     makeBadge(`Stage ${trophy.stage}`, 'badge-stage'),
   );
   if (trophy.missable) badges.append(makeBadge('⚠ Missable', 'badge-missable'));
-  body.append(heading, desc, badges);
+
+  body.append(heading, description, badges);
+
   if (!hiddenBySpoiler) {
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'guide-btn';
-    btn.textContent = isOpen ? 'Hide guide ▴' : 'Guide & sources ▾';
-    btn.addEventListener('click', () => onToggleGuide(trophy.id));
-    body.append(btn);
+    const guideButton = document.createElement('button');
+    guideButton.type = 'button';
+    guideButton.className = 'guide-btn';
+    guideButton.textContent = isOpen ? 'Hide guide ▴' : 'Guide & sources ▾';
+    guideButton.addEventListener('click', () => onToggleGuide(trophy.id));
+    body.append(guideButton);
     if (isOpen) body.append(buildGuidePanel(trophy));
   }
-  top.append(box, dot, body);
-  card.append(top);
+
+  topRow.append(checkbox, dot, body);
+  card.append(topRow);
   return card;
 }
 
 export function renderProgressSummary(trophies, earnedNames) {
   const total = trophies.length;
   const done = earnedNames.size;
-  document.getElementById('progress-text').textContent = `${done} of ${total} earned · ${Math.round((done / total) * 100)}%`;
+  const percent = Math.round((done / total) * 100);
+
+  document.getElementById('progress-text').textContent = `${done} of ${total} earned · ${percent}%`;
   document.getElementById('progress-bar').style.width = `${(done / total) * 100}%`;
-  const grades = [['platinum', 'Platinum'], ['gold', 'Gold'], ['silver', 'Silver'], ['bronze', 'Bronze']];
-  const list = document.getElementById('grade-counts');
-  list.replaceChildren();
-  for (const [grade, label] of grades) {
-    const all = trophies.filter((t) => t.grade === grade);
-    const got = all.filter((t) => earnedNames.has(t.name)).length;
+
+  const gradeList = document.getElementById('grade-counts');
+  gradeList.replaceChildren();
+  for (const [grade, label] of [['platinum', 'Platinum'], ['gold', 'Gold'], ['silver', 'Silver'], ['bronze', 'Bronze']]) {
+    const inGrade = trophies.filter((trophy) => trophy.grade === grade);
+    const earnedInGrade = inGrade.filter((trophy) => earnedNames.has(trophy.name)).length;
     const item = document.createElement('li');
     const bold = document.createElement('b');
-    bold.textContent = `${got}/${all.length}`;
+    bold.textContent = `${earnedInGrade}/${inGrade.length}`;
     item.append(bold, document.createTextNode(` ${label}`));
-    list.append(item);
+    gradeList.append(item);
   }
-  const missables = trophies.filter((t) => t.missable);
-  const missDone = missables.filter((t) => earnedNames.has(t.name)).length;
-  document.getElementById('missable-count').textContent = `⚠ Missable ${missDone}/${missables.length}: ${missables.map((t) => t.name).join(' · ')}`;
+
+  const missables = trophies.filter((trophy) => trophy.missable);
+  const missablesDone = missables.filter((trophy) => earnedNames.has(trophy.name)).length;
+  document.getElementById('missable-count').textContent =
+    `⚠ Missable ${missablesDone}/${missables.length}: ${missables.map((trophy) => trophy.name).join(' · ')}`;
 }

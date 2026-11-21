@@ -1,69 +1,140 @@
-/* Leonida Legend — original neon-sunset identity: deep indigo night, hot pink/orange sunset, palm silhouettes. */
-:root{--bg:#12082b;--bg2:#1d1140;--card:#21154a;--card2:#2a1a5e;--ink:#f6f1ff;--muted:#c9bdf0;--pink:#ff2e88;--orange:#ff8a3d;--gold:#ffd24a;--silver:#cfd6e4;--bronze:#e8975a;--plat:#7ef0e6;--line:#3d2a7a}
-*{box-sizing:border-box}
-body{margin:0 auto;max-width:1280px;padding:8px 14px 28px;background:linear-gradient(180deg,#0d0620,var(--bg) 240px);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.45}
-a{color:#ffb3d1}
-.hero{position:relative;overflow:hidden;display:flex;gap:18px;align-items:stretch;background:linear-gradient(100deg,#2b0f4d 0%,#7a1458 42%,var(--pink) 68%,var(--orange) 88%,var(--gold) 100%);border-radius:14px;padding:10px 16px 12px;box-shadow:0 8px 28px rgba(0,0,0,.45)}
-.hero-main{flex:1;min-width:0;position:relative;z-index:1}
-.palms{position:absolute;left:0;right:0;bottom:0;width:100%;height:38px;opacity:.9;pointer-events:none}
-.kicker{margin:0;font-size:11px;letter-spacing:.18em;font-weight:700;color:#ffe9f4}
-h1{margin:2px 0 3px;font-size:25px;line-height:1.1;text-shadow:0 2px 10px rgba(0,0,0,.35)}
-h1 span{font-size:16px;font-weight:600;color:#fff3d6}
-.sub{margin:3px 0;max-width:720px;color:#fff}
-.sources-line{margin:3px 0 0;font-size:12px;color:#ffe1ef}
-.progress-panel{position:relative;z-index:1;background:rgba(11,5,32,.82);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:10px 12px;width:332px;flex:none}
-.progress-text{margin:0 0 6px;font-size:17px;font-weight:800}
-.bar{height:12px;background:#0b0520;border-radius:99px;overflow:hidden;border:1px solid var(--line)}
-.bar-fill{height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--orange),var(--gold));transition:width .25s}
-.grade-counts{list-style:none;margin:8px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,auto);gap:3px 8px;font-size:12px;color:var(--muted);white-space:nowrap}
-.grade-counts b{color:var(--ink)}
-.missable-count{margin:8px 0 0;font-size:12.5px;color:#ffb3c2}
-.roadmap{margin:8px 0 0;background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:8px 12px}
-.roadmap-head{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
-.roadmap-head h2{margin:0;font-size:18px;color:#ffd9a8}
-.roadmap-head p{margin:0;color:var(--muted);font-size:12.5px}
-.roadmap-stages{display:grid;grid-template-columns:repeat(6,1fr);gap:7px;margin-top:7px}
-.stage-card{text-align:left;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:7px 9px;cursor:pointer;font:inherit}
-.stage-card:hover,.stage-card.active{border-color:var(--orange);background:var(--card2)}
-.stage-card h3{margin:0 0 2px;font-size:13px}
-.stage-card h3 .stage-num{color:var(--gold)}
-.stage-card p{margin:0;color:var(--muted);font-size:11px;line-height:1.3}
-.stage-card .stage-meta{margin-top:3px;color:#ffb3d1;font-size:11.5px;font-weight:700}
-.toolbar{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:7px;align-items:center;background:rgba(18,8,43,.96);border:1px solid var(--line);border-radius:12px;padding:7px 9px;margin:10px 0 8px}
-.toolbar input[type=search]{flex:1 1 210px;padding:5px 10px;border-radius:8px;border:1px solid var(--line);background:#0d0620;color:var(--ink)}
-.toolbar select{padding:4px;border-radius:8px;border:1px solid var(--line);background:#0d0620;color:var(--ink)}
-.toolbar button,.import-btn{background:var(--card2);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:4px 10px;cursor:pointer;font-size:13px}
-.toolbar button:hover,.import-btn:hover{border-color:var(--pink)}
-.import-btn input{display:none}
-.chips{display:flex;flex-wrap:wrap;gap:5px}
-.chips .chip{font-size:12.5px;padding:5px 9px}
-.chip.active{background:linear-gradient(90deg,var(--pink),var(--orange));color:#fff;border-color:transparent;font-weight:700}
-.chip-missable{color:#ffb3c2}
-.spoiler-toggle{display:flex;gap:6px;align-items:center;font-size:13px;color:#ffd9a8}
-.result-count{color:var(--muted);margin:0 0 5px;font-size:12.5px}
-.trophy-list{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.trophy{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:7px 10px}
-.trophy.earned{border-color:#3f9e6e;background:#1d2f4a}
-.trophy-top{display:flex;gap:9px;align-items:flex-start}
-.trophy input[type=checkbox]{width:19px;height:19px;margin-top:2px;accent-color:var(--pink);flex:none;cursor:pointer}
-.grade-dot{flex:none;width:13px;height:13px;border-radius:50%;margin-top:4px;border:2px solid rgba(255,255,255,.5)}
-.grade-platinum{background:var(--plat)}.grade-gold{background:var(--gold)}.grade-silver{background:var(--silver)}.grade-bronze{background:var(--bronze)}
-.trophy h3{margin:0;font-size:15px;line-height:1.25}
-.trophy .desc{margin:1px 0 5px;color:var(--muted);font-size:13px}
-.badges{display:flex;flex-wrap:wrap;gap:4px}
-.badge{font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;background:#0d0620;border:1px solid var(--line);color:var(--muted);border-radius:99px;padding:1px 7px}
-.badge-grade-platinum{color:var(--plat)}.badge-grade-gold{color:var(--gold)}.badge-grade-silver{color:var(--silver)}.badge-grade-bronze{color:var(--bronze)}
-.badge-missable{background:#5c0f2e;color:#ffb3c2;border-color:var(--pink)}
-.badge-stage{color:#ffd9a8}
-.guide-btn{margin-top:5px;background:none;border:1px solid var(--pink);color:#ffb3d1;border-radius:8px;padding:4px 10px;cursor:pointer;font-size:12.5px;font-weight:700}
-.guide-panel{margin-top:6px;background:#160b38;border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:13px;line-height:1.38}
-.guide-panel p{margin:0 0 6px}
-.guide-panel .guide-label{font-size:11px;letter-spacing:.14em;color:var(--gold);font-weight:800;margin-bottom:3px}
-.sources{font-size:12px;color:var(--muted);border-top:1px dashed var(--line);padding-top:6px}
-.sources a{color:#ffb3d1}
-.missable-note{font-size:12.5px;color:#ffb3c2;font-weight:700}
-.spoiler-mask{color:#ffd9a8;font-style:italic}
-.empty{color:var(--muted);padding:18px;text-align:center}
-.foot{margin-top:16px;color:var(--muted);font-size:12px;border-top:1px solid var(--line);padding-top:10px}
-@media(max-width:1100px){.roadmap-stages{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:900px){.trophy-list{grid-template-columns:1fr}.roadmap-stages{grid-template-columns:1fr 1fr}.hero{flex-direction:column}.progress-panel{width:auto}}
+/* Leonida Legend — my neon-sunset styling: deep indigo night, a hot
+   pink / orange sunset in the hero, palm silhouettes, system fonts only. */
+:root {
+  --bg: #12082b;
+  --bg2: #1d1140;
+  --card: #21154a;
+  --card2: #2a1a5e;
+  --ink: #f6f1ff;
+  --muted: #c9bdf0;
+  --pink: #ff2e88;
+  --orange: #ff8a3d;
+  --gold: #ffd24a;
+  --silver: #cfd6e4;
+  --bronze: #e8975a;
+  --plat: #7ef0e6;
+  --line: #3d2a7a;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0 auto;
+  max-width: 1280px;
+  padding: 8px 14px 28px;
+  background: linear-gradient(180deg, #0d0620, var(--bg) 240px);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.45;
+}
+a { color: #ffb3d1; }
+
+/* Hero */
+.hero {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  gap: 18px;
+  align-items: stretch;
+  background: linear-gradient(100deg, #2b0f4d 0%, #7a1458 42%, var(--pink) 68%, var(--orange) 88%, var(--gold) 100%);
+  border-radius: 14px;
+  padding: 10px 16px 12px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, .45);
+}
+.hero-main { flex: 1; min-width: 0; position: relative; z-index: 1; }
+.palms { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 38px; opacity: .9; pointer-events: none; }
+.kicker { margin: 0; font-size: 11px; letter-spacing: .18em; font-weight: 700; color: #ffe9f4; }
+h1 { margin: 2px 0 3px; font-size: 25px; line-height: 1.1; text-shadow: 0 2px 10px rgba(0, 0, 0, .35); }
+h1 span { font-size: 16px; font-weight: 600; color: #fff3d6; }
+.sub { margin: 3px 0; max-width: 720px; color: #fff; }
+.sources-line { margin: 3px 0 0; font-size: 12px; color: #ffe1ef; }
+
+/* Progress panel in the hero */
+.progress-panel {
+  position: relative;
+  z-index: 1;
+  background: rgba(11, 5, 32, .82);
+  border: 1px solid rgba(255, 255, 255, .25);
+  border-radius: 12px;
+  padding: 10px 12px;
+  width: 332px;
+  flex: none;
+}
+.progress-text { margin: 0 0 6px; font-size: 17px; font-weight: 800; }
+.bar { height: 12px; background: #0b0520; border-radius: 99px; overflow: hidden; border: 1px solid var(--line); }
+.bar-fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--pink), var(--orange), var(--gold)); transition: width .25s; }
+.grade-counts { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, auto); gap: 3px 8px; font-size: 12px; color: var(--muted); white-space: nowrap; }
+.grade-counts b { color: var(--ink); }
+.missable-count { margin: 8px 0 0; font-size: 12.5px; color: #ffb3c2; }
+
+/* Roadmap */
+.roadmap { margin: 8px 0 0; background: var(--bg2); border: 1px solid var(--line); border-radius: 14px; padding: 8px 12px; }
+.roadmap-head { display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+.roadmap-head h2 { margin: 0; font-size: 18px; color: #ffd9a8; }
+.roadmap-head p { margin: 0; color: var(--muted); font-size: 12.5px; }
+.roadmap-stages { display: grid; grid-template-columns: repeat(6, 1fr); gap: 7px; margin-top: 7px; }
+.stage-card { text-align: left; background: var(--card); color: var(--ink); border: 1px solid var(--line); border-radius: 10px; padding: 7px 9px; cursor: pointer; font: inherit; }
+.stage-card:hover, .stage-card.active { border-color: var(--orange); background: var(--card2); }
+.stage-card h3 { margin: 0 0 2px; font-size: 13px; }
+.stage-card h3 .stage-num { color: var(--gold); }
+.stage-card p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.3; }
+.stage-card .stage-meta { margin-top: 3px; color: #ffb3d1; font-size: 11.5px; font-weight: 700; }
+
+/* Toolbar / filters */
+.toolbar {
+  position: sticky; top: 0; z-index: 5;
+  display: flex; flex-wrap: wrap; gap: 7px; align-items: center;
+  background: rgba(18, 8, 43, .96);
+  border: 1px solid var(--line); border-radius: 12px;
+  padding: 7px 9px; margin: 10px 0 8px;
+}
+.toolbar input[type="search"] { flex: 1 1 210px; padding: 5px 10px; border-radius: 8px; border: 1px solid var(--line); background: #0d0620; color: var(--ink); }
+.toolbar select { padding: 4px; border-radius: 8px; border: 1px solid var(--line); background: #0d0620; color: var(--ink); }
+.toolbar button, .import-btn { background: var(--card2); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 4px 10px; cursor: pointer; font-size: 13px; }
+.toolbar button:hover, .import-btn:hover { border-color: var(--pink); }
+.import-btn input { display: none; }
+.chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.chips .chip { font-size: 12.5px; padding: 5px 9px; }
+.chip.active { background: linear-gradient(90deg, var(--pink), var(--orange)); color: #fff; border-color: transparent; font-weight: 700; }
+.chip-missable { color: #ffb3c2; }
+.spoiler-toggle { display: flex; gap: 6px; align-items: center; font-size: 13px; color: #ffd9a8; }
+
+/* Checklist */
+.result-count { color: var(--muted); margin: 0 0 5px; font-size: 12.5px; }
+.trophy-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; align-items: start; }
+.trophy { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 7px 10px; }
+.trophy.earned { border-color: #3f9e6e; background: #1d2f4a; }
+.trophy-top { display: flex; gap: 9px; align-items: flex-start; }
+.trophy input[type="checkbox"] { width: 19px; height: 19px; margin-top: 2px; accent-color: var(--pink); flex: none; cursor: pointer; }
+.grade-dot { flex: none; width: 13px; height: 13px; border-radius: 50%; margin-top: 4px; border: 2px solid rgba(255, 255, 255, .5); }
+.grade-platinum { background: var(--plat); }
+.grade-gold { background: var(--gold); }
+.grade-silver { background: var(--silver); }
+.grade-bronze { background: var(--bronze); }
+.trophy h3 { margin: 0; font-size: 15px; line-height: 1.25; }
+.trophy .desc { margin: 1px 0 5px; color: var(--muted); font-size: 13px; }
+.badges { display: flex; flex-wrap: wrap; gap: 4px; }
+.badge { font-size: 10.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; background: #0d0620; border: 1px solid var(--line); color: var(--muted); border-radius: 99px; padding: 1px 7px; }
+.badge-grade-platinum { color: var(--plat); }
+.badge-grade-gold { color: var(--gold); }
+.badge-grade-silver { color: var(--silver); }
+.badge-grade-bronze { color: var(--bronze); }
+.badge-missable { background: #5c0f2e; color: #ffb3c2; border-color: var(--pink); }
+.badge-stage { color: #ffd9a8; }
+.guide-btn { margin-top: 5px; background: none; border: 1px solid var(--pink); color: #ffb3d1; border-radius: 8px; padding: 4px 10px; cursor: pointer; font-size: 12.5px; font-weight: 700; }
+.guide-panel { margin-top: 6px; background: #160b38; border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; font-size: 13px; line-height: 1.38; }
+.guide-panel p { margin: 0 0 6px; }
+.guide-panel .guide-label { font-size: 11px; letter-spacing: .14em; color: var(--gold); font-weight: 800; margin-bottom: 3px; }
+.sources { font-size: 12px; color: var(--muted); border-top: 1px dashed var(--line); padding-top: 6px; }
+.sources a { color: #ffb3d1; }
+.missable-note { font-size: 12.5px; color: #ffb3c2; font-weight: 700; }
+.spoiler-mask { color: #ffd9a8; font-style: italic; }
+.empty { color: var(--muted); padding: 18px; text-align: center; }
+.foot { margin-top: 16px; color: var(--muted); font-size: 12px; border-top: 1px solid var(--line); padding-top: 10px; }
+
+@media (max-width: 1100px) { .roadmap-stages { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 900px) {
+  .trophy-list { grid-template-columns: 1fr; }
+  .roadmap-stages { grid-template-columns: 1fr 1fr; }
+  .hero { flex-direction: column; }
+  .progress-panel { width: auto; }
+}

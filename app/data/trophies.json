@@ -1,9 +1,9 @@
 {
- "game": "Grand Theft Auto VI",
- "platform": "PlayStation 5",
- "list": "the official 55 trophies, 2026-11-18",
- "sourcesNote": "Official names, descriptions and grades as listed by Exophase and PSNProfiles. All how-to text is original guidance written from those official descriptions only; no location or step is claimed beyond what a description supports.",
- "trophies": [
+  "game": "Grand Theft Auto VI",
+  "platform": "PlayStation 5",
+  "list": "the official 55 trophies, 2026-11-18",
+  "sourcesNote": "Official names, descriptions and grades as listed by Exophase and PSNProfiles. All how-to text is original guidance written from those official descriptions only; no location or step is claimed beyond what a description supports.",
+  "trophies": [
   {"id": 1, "name": "Vice Got a Price!", "description": "Congratulations! You're a Leonida Legend.", "grade": "platinum", "kind": "freeroam", "missable": false, "stage": 6, "sources": ["Exophase — Grand Theft Auto VI trophies", "PSNProfiles — Grand Theft Auto VI trophies"], "guide": "This is the platinum, awarded automatically once the other 54 trophies on this list have been earned. There is nothing separate to do for it, so treat it as a progress check rather than a task: if it has not popped, one of the other trophies is still missing. Work through the roadmap stages in order and use the per-grade counts at the top of this tracker to spot the gap. It is not missable, because it simply follows the rest of the list."},
   {"id": 2, "name": "Just Like Paradise", "description": "Complete Gone Fishing.", "grade": "bronze", "kind": "story", "missable": false, "stage": 1, "sources": ["Exophase — Grand Theft Auto VI trophies", "PSNProfiles — Grand Theft Auto VI trophies"], "guide": "Complete the mission named Gone Fishing, which the official description presents as an early story mission. Play through the opening of the story and follow the mission objectives until the mission-complete screen appears. No optional objective is mentioned in the description, so finishing the mission itself is the whole requirement. It is not marked missable here, because nothing in the description ties it to a choice or a one-time opportunity."},
   {"id": 3, "name": "Paradise Lost", "description": "Complete Chapter 1.", "grade": "bronze", "kind": "story", "missable": false, "stage": 1, "sources": ["Exophase — Grand Theft Auto VI trophies", "PSNProfiles — Grand Theft Auto VI trophies"], "guide": "Finish every story mission in Chapter 1 and the trophy pops when the chapter closes. The safest approach is to stay on the main story path during this stage and postpone heavy free-roam collecting until the chapter is done. Keep a manual save at the start of the chapter so you can return if anything goes wrong. Nothing in the description suggests a choice that can lock this out, so it is treated as a normal, unmissable story milestone."},
